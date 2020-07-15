@@ -5,14 +5,11 @@ const app = express();
 
 // Middleware
 // ==============================================================================
-
 // configure app to use data parsing
-// ======================================
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Set static assets path
-// ======================================
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
@@ -21,15 +18,8 @@ if (process.env.NODE_ENV === "production") {
 // ==============================================================================
 app.use(require('./routes'))
 
-// Send every other request to the React app
-// Define any API routes before this runs
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
-
 // Start the App
 // ==============================================================================
-
 // Connect to MongoDB
 require('./config/mongoConnect')
 // Launch App
