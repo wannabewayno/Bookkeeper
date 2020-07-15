@@ -29,6 +29,10 @@ app.get("*", (req, res) => {
 
 // Start the App
 // ==============================================================================
-app.listen(PORT, () => {
-  console.log(`🌎 ==> API server now on port ${PORT}!`);
-});
+
+// Connect to MongoDB
+require('./config/mongoConnect')
+// Launch App
+.then(connected => app.listen(PORT, () => console.log(`🌎 ==> API server now on port ${PORT}!`)))
+// Log error, shut down
+.catch(error  => console.log("Can't establish a connection with MongoDB: App shutting down"))
