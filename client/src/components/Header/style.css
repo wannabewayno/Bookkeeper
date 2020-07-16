@@ -43,12 +43,8 @@
 }
 
 .navbox a:hover{
-    border-bottom: 2px solid rgba(28,116,88,1);
-    width:calc(50% - 4px);
+   
 }
-
-.navbox a:first-child:hover { transform-origin: right; border-left: 2px solid rgba(28,116,88,1); }
-.navbox a:last-child:hover{ transform-origin: left; border-right: 2px solid rgba(28,116,88,1);}
 
 .navbox a:active {
     transition: none;

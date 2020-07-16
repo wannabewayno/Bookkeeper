@@ -10,8 +10,10 @@ import bookshelf from './bookshelf.jpg'
 
 function App() {
 
+  // keeps track of where the router is
   const [ location, setLocation ] = useState(window.location.pathname);
 
+  // gets the background image based on the location of the router
   function getBackgroundImage(){
     switch(location){
       case'/': return library
@@ -21,6 +23,7 @@ function App() {
     }
   }
 
+  // css for the body
   const pageStyle = {
     paddingTop:'80px',
     backgroundImage:`url(${getBackgroundImage()})`,
@@ -29,16 +32,12 @@ function App() {
     backgroundAttachment:'fixed'
  }
  
+ // Changes the body css everytime the router switches pages
  useEffect(() => {
-  console.log('this is firing');
-  Object.keys(pageStyle).forEach(style => {
-    return document.body.style[style] = pageStyle[style];
-  })
-    
-},[location])
-
-
- console.log(location);
+    Object.keys(pageStyle).forEach(style => {
+      return document.body.style[style] = pageStyle[style];
+    })  
+  },[location])
 
   return (
     <Router>
