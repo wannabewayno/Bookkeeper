@@ -5,6 +5,7 @@
     position: fixed;
     display: flex;
     justify-content: center;
+    z-index:9001;
 }
 
 .navbox {
@@ -38,7 +39,25 @@
     padding:0 0.5rem;
     background-color: bisque;
     border-radius: 0;
+    transition: all ease-in-out;
 }
+
+.navbox a:hover{
+    border-bottom: 2px solid rgba(28,116,88,1);
+    width:calc(50% - 4px);
+}
+
+.navbox a:first-child:hover { transform-origin: right; border-left: 2px solid rgba(28,116,88,1); }
+.navbox a:last-child:hover{ transform-origin: left; border-right: 2px solid rgba(28,116,88,1);}
+
+.navbox a:active {
+    transition: none;
+    z-index:2;
+    transform: scale(1.05);
+}
+
+.navbox a:first-child:active { transform-origin: right; }
+.navbox a:last-child:active { transform-origin: left; }
 
 .navbox img {
     width:100%;
