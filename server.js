@@ -1,5 +1,5 @@
 // load env variables
-require('dotenv').configure();
+require('dotenv').config();
 
 // require all dependencies
 const express = require("express");

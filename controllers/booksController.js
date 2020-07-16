@@ -1,10 +1,12 @@
 // Use the Book schema in booksController
 const { Book } = require('../models');
 
+console.log('the Book model:',Book);
+
 // Methods for the booksController
 module.exports = {
     findAll(req,res) {
-        Book.find()
+        Book.find({})
         .then(books => res.json(books))
         .catch(error => res.status(422).json(error));
     },
@@ -13,9 +15,11 @@ module.exports = {
         .then(book => res.json(book))
         .catch(error => res.status(422).json(error));
     },
-    save(req,res) { 
+    save(req,res) {
+        console.log('Save controller!');
+        console.log(req.body);
         Book.create(req.body)
-        .then(response => res.json(response))
+        .then(response => {console.log('response back from the Save controller!'); res.json(response)})
         .catch(error => res.status(422).json(error));
     },
     delete(req,res) {
