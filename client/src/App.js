@@ -11,7 +11,7 @@ import bookshelf from './bookshelf.jpg'
 function App() {
 
   // keeps track of where the router is
-  const [ location, setLocation ] = useState(window.location.pathname);
+  const [ location ] = useState(window.location.pathname);
 
   // gets the background image based on the location of the router
   function getBackgroundImage(){

@@ -6,6 +6,7 @@ export default function Saved(){
 
     return (
         <Container>
+
             <FrostedGlass
                 shadow='xx-large'
                 blur='x-small'
@@ -13,7 +14,9 @@ export default function Saved(){
                <ResultContainer results={[]}>
                    <div></div>
                </ResultContainer>
+        
             </FrostedGlass>
+
         </Container>
     )
 }
