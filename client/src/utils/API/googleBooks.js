@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export async function searchBooks(formData){
     console.log('SearchBooks:',formData);
-    const API_KEY = `&key=AIzaSyCNi4md3S-WZAswlzNHKqn-yiwD8Ii9Wek`;
+    const API_KEY = `&key=`;
     const baseQuery = 'https://www.googleapis.com/books/v1/volumes?q='
     const general = '';
     const inAuthor = `inauthor:${''}`;
