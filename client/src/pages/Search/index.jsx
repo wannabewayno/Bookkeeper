@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
-import { Container, FormContainer, SearchBar, ResultContainer, InlineContainer, Arctext } from '@wannabewayno/reactor';
+import { Container, FormContainer, SearchBar, InlineContainer, FrostedGlass,  useLiftState  } from '@wannabewayno/reactor';
 import './style.css';
-import { createBook } from '../../utils/API';
+import { saveBook } from '../../utils/API';
 import { searchBooks } from '../../utils/API/googleBooks';
+import ResultContainer from '../../components/ResultContainer';
+import Book from '../../components/Book';
 
-export default function Search(){
+export default function Search() {
 
-    // const [ bookQuery, setBookQuery ] = useState({});
-    // const [ bookData, setBooKData ] = useState([]);
+    const [liftedStates, liftUpState ] = useLiftState()
 
-    async function handleFormSubmit(formData){
+    function handleFormSubmit(formData){
         console.log('FORM DATA:',formData);
-        const books = searchBooks(formData);
-        console.log(books);
+        console.log(liftedStates);
+        searchBooks(formData).then(books => liftedStates.setResultContainerData(books.data.items));
     } 
 
     return (
@@ -33,9 +34,11 @@ export default function Search(){
                 <button type='submit'>Submit</button>
             </FormContainer>
 
-            <ResultContainer results={[]}>
-                <div></div>
-            </ResultContainer>
+            <FrostedGlass>
+            	<ResultContainer results={[]} liftUpState={liftUpState}>
+            	    <Book/>
+            	</ResultContainer>
+            </FrostedGlass>
            
         </Container>
     )

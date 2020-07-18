@@ -7,7 +7,7 @@ export const getBooks = async () => {
     }
 }
 
-export const createBook = async bookData => {
+export const saveBook = async bookData => {
     console.log('client side API:',bookData);
     try {
         const response = await fetch('/api/books',{
