@@ -8,19 +8,19 @@ import './style.css';
  * @param {Object} props.children      - The template component to render the data with matching data keys
  * @param {Object} [props.liftUpState] - a function that lift's up the containers data state and setData attributes.
  */
-const ResultContainer = ({ results, children, liftUpState, style }) => {
+const ResultContainer = ({ children, liftUpState, style }) => {
+    
 
     const errorInfo = 'The ResultContainer should wrap a template component used to render the data it receives'
-    if (!children) {
+    if (!children ) {
         console.error('No template component detected!:', errorInfo)
     }
-    if (children.length > 1){
+    if (Array.isArray(children)){
         console.error('Too many child elements in the ResultContainer:', errorInfo)
     }
 
-    const [resultContainerData, setResultContainerData] = useState(results);
-    console.log(results);
-    console.log(resultContainerData);
+    const [resultContainerData, setResultContainerData] = useState([]);
+
     //we're using the liftUpState function make the setData function available to App.js
     useEffect(() => {
         // if a liftUpState function was passed as a prop, call it
@@ -36,7 +36,7 @@ const ResultContainer = ({ results, children, liftUpState, style }) => {
     return (
         <section className='ResultContainer' style={style}>
             <ul>
-                {resultContainerData.map(dataItem => cloneElement(children,{ data:dataItem, key: dataItem.id }))}
+                {resultContainerData.map((dataItem,index) => cloneElement(children,{ data: dataItem, key: index }))}
             </ul>
         </section>
     )

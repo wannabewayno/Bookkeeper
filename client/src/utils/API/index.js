@@ -1,7 +1,7 @@
+import axios from 'axios';
 export const getBooks = async () => {
     try {
-        const books = await fetch('/api/books');
-        console.log(books);
+        return (await axios.get('/api/books')).data
     } catch {
         console.error('an error occured getting books');
     }

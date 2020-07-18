@@ -11,9 +11,9 @@ export default function Search() {
     const [liftedStates, liftUpState ] = useLiftState()
 
     function handleFormSubmit(formData){
-        console.log('FORM DATA:',formData);
-        console.log(liftedStates);
-        searchBooks(formData).then(books => liftedStates.setResultContainerData(books.data.items));
+        // console.log('FORM DATA:',formData);
+        // console.log(liftedStates);
+        searchBooks(formData).then(books => liftedStates.setResultContainerData(books));
     } 
 
     return (

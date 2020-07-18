@@ -13,7 +13,9 @@ export async function searchBooks(formData){
     const query = 'https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes'
 
     try {
-        return await axios.get(query)
+        const results = await axios.get(query)
+        return results.data.items.map(item => item.volumeInfo)
+        
     } catch(error) {
         console.error('An error occured searching for books:',error);
     }

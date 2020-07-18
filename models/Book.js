@@ -11,6 +11,8 @@ const bookSchema = new Schema({
     description: String,
     image: String,
     link: String,
+    averageRating: Number,
+    categories: Number,
 
 });
 
