@@ -20,7 +20,16 @@ module.exports = {
         console.log(req.body);
         Book.create(req.body)
         .then(response => {console.log('response back from the Save controller!'); res.json(response)})
-        .catch(error => res.status(422).json(error));
+        .catch(error => {
+            console.log(error)
+            const { code } = error
+            console.log('ERROR CODE:', code);
+            res.status(422).json({
+                errors:[
+                    { errorCode: code, }
+                ]
+            })
+        });
     },
     delete(req,res) {
         Book.deleteOne({ _id: req.params.id })

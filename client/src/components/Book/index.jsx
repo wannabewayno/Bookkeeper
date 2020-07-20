@@ -7,9 +7,10 @@ import { saveBook } from '../../utils/API/index.js';
 
 export default function Book ({ data }) {
     
-    const { authors, averageRating, categories, description, title, imageLinks, subtitle, infoLink } = data;
+    const { bookID, authors, averageRating, categories, description, title, imageLinks, subtitle, infoLink } = data;
 
     const [bookData, setBookData] = useState({
+        bookID,
         authors,
         averageRating,
         categories,

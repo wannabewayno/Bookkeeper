@@ -1,6 +1,7 @@
 export const headStyle = {
     display:'flex',
-    justifyContent:'space-between',
+    flexWrap:'wrap',
+    justifyContent:'space-around',
     alignItems:'center'
 }
 export const authorsStyle = {

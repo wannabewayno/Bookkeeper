@@ -15,7 +15,7 @@ const bookSchema = new Schema({
     },
     infoLink: String,
     averageRating: Number,
-    categories: Number,
+    categories: [String],
 });
 
 const Book = mongoose.model('Book', bookSchema );

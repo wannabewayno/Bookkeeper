@@ -1,5 +1,6 @@
 export const descriptionStyle = {
     paddingLeft:'1rem',
+    paddingTop:'1rem',
     height:'100%',
 };
 export const thumbnailStyle = {
@@ -9,7 +10,7 @@ export const thumbnailStyle = {
 export const bodyStyle = {};
 export const categoryStyle = {};
 export const alignmentStyle = {
-    padding:'1rem',
+    flexWrap:'wrap',
     display:'flex',
     justifyContent:'space-around',
     alignItems:'center'
