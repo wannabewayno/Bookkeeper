@@ -25,10 +25,6 @@ export default function Saved(){
         }
     },[liftedStates])
 
-    function handleClick () {
-        console.log(liftedStates);
-    }
-
     return (
         <Container>
 
