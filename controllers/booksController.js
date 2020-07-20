@@ -21,14 +21,10 @@ module.exports = {
         Book.create(req.body)
         .then(response => {console.log('response back from the Save controller!'); res.json(response)})
         .catch(error => {
-            console.log(error)
-            const { code } = error
-            console.log('ERROR CODE:', code);
-            res.status(422).json({
-                errors:[
-                    { errorCode: code, }
-                ]
-            })
+            console.log(error.code)
+            // const { code } = error
+            // console.log('ERROR CODE:', code);
+            res.status(401).json(error)
         });
     },
     delete(req,res) {
@@ -37,3 +33,4 @@ module.exports = {
         .catch(error => res.status(422).json(error));
     },
 }
+

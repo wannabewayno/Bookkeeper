@@ -5,7 +5,7 @@ import BookBody from './BookBody';
 import { bookStyle } from './style';
 import { saveBook } from '../../utils/API/index.js';
 
-export default function Book ({ data }) {
+export default function Book ({ data, saved=false }) {
     
     const { bookID, authors, averageRating, categories, description, title, imageLinks, subtitle, infoLink } = data;
 
@@ -30,6 +30,7 @@ export default function Book ({ data }) {
         // trigger spinner
         saveBook(bookData)
         .then(response => console.log(response))
+        .catch(error => console.log('Client side:',error.response));
         // server response: stop Spinner
     }
 
@@ -60,6 +61,7 @@ export default function Book ({ data }) {
                 rating={averageRating}
                 authors={authors}
                 clickSave={clickSave}
+                saved={saved}
             />
             <BookBody
                 description={description}

@@ -8,13 +8,7 @@ export const getBooks = async () => {
     }
 }
 
-export const saveBook = async bookData => {
+export const saveBook = bookData => {
     console.log('client side API:',bookData);
-    try {
-        return await axios.post('/api/books',bookData)
-    } catch(error) {
-        console.log('Error saving book', error);
-        return error
-    }
-
+    return axios.post('/api/books',bookData)
 }

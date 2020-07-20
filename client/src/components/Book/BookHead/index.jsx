@@ -4,7 +4,7 @@ import { headStyle, infoStyle, headingStyle, authorsStyle, buttonContainerStyle 
 import { InlineContainer, Button } from '@wannabewayno/reactor'
 // import Button from '../../buttons/buttons/Button';
 
-export default function BookHead({ title, rating, authors, clickSave }) {
+export default function BookHead({ title, rating, authors, clickSave, save }) {
 
     function returnAuthor(author ,index, length) {
         let separator = ', '
