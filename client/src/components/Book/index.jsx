@@ -3,13 +3,13 @@ import { InlineContainer } from  '@wannabewayno/reactor';
 import BookHead from './BookHead';
 import BookBody from './BookBody';
 import { bookStyle } from './style';
-import { saveBook } from '../../utils/API/index.js';
+import { saveBook, deleteBook } from '../../utils/API/index.js';
 
 export default function Book ({ data }) {
     
     const { bookID, authors, averageRating, categories, description, title, imageLinks, subtitle, infoLink, saved } = data;
 
-    const [isSaved, setSaved] = useState(saved)
+    const [isSaved, setIsSaved] = useState(saved)
     const [bookData, setBookData] = useState({
         bookID,
         authors,
@@ -22,17 +22,41 @@ export default function Book ({ data }) {
         infoLink,
     })
 
+    function handleClick(){
+        console.log(isSaved,typeof(isSaved));
+        console.log(bookData);
+        if(isSaved){
+            clickDelete();
+            return
+        } else {
+            clickSave();
+            return
+        }
+    }
+
+
     // Saves book to MongoDB
     function clickSave(event){
-        // get the button that was clicked.
-        const ref = event.currentTarget;
-
-        console.log(bookData);
-        // trigger spinner
+        // server processing: trigger spinner
         saveBook(bookData)
-        .then(response => console.log(response))
-        .catch(error => console.log('Client side:',error.response));
-        // server response: stop Spinner
+        .then(() => {
+            // server responded: stop Spinner
+            // set State
+            setIsSaved(true);
+        })
+        .catch(error => console.log(error.response))
+    }
+
+    // Removes book from MongoDB
+    function clickDelete(event){
+        // server processing: trigger spinner
+        deleteBook(bookData.bookID)
+        .then(() => {
+            // server responded: stop Spinner
+            // set State
+            setIsSaved(false);
+        })
+        .catch(error => console.log(error.response))
     }
 
     let thumbnail;
@@ -61,7 +85,7 @@ export default function Book ({ data }) {
                 title={title}
                 rating={averageRating}
                 authors={authors}
-                clickSave={clickSave}
+                handleClick={handleClick}
                 isSaved={isSaved}
             />
             <BookBody

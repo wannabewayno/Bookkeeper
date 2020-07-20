@@ -4,7 +4,7 @@ import { headStyle, infoStyle, headingStyle, authorsStyle, buttonContainerStyle 
 import { InlineContainer, Button } from '@wannabewayno/reactor'
 // import Button from '../../buttons/buttons/Button';
 
-export default function BookHead({ title, rating, authors, clickSave, isSaved }) {
+export default function BookHead({ title, rating, authors, handleClick, isSaved }) {
 
     function returnAuthor(author ,index, length) {
         let separator = ', '
@@ -29,7 +29,7 @@ export default function BookHead({ title, rating, authors, clickSave, isSaved })
                 <Button
                     size='small'
                     color={isSaved?'hsl(0,70%,40%)':'rgb(26,116,88)'}
-                    onClick={clickSave}
+                    onClick={handleClick}
                 >
                     {isSaved?'un-Save':'Save'}
                 </Button>

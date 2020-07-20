@@ -28,7 +28,7 @@ module.exports = {
         });
     },
     delete(req,res) {
-        Book.deleteOne({ _id: req.params.id })
+        Book.deleteOne({ bookID: req.params.id })
         .then(deletedBook => res.json(deletedBook))
         .catch(error => res.status(422).json(error));
     },

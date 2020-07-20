@@ -5,11 +5,13 @@ export const getBooks = () => {
 }
 
 export const saveBook = bookData => {
-    console.log('client side API:',bookData);
-    return axios.post('/api/books',bookData)
+    return axios.post('/api/books',bookData);
 }
 
 export const crossCheckBooks = bookIDs => {
-    console.log('crossCheckBooks(): bookIDs ->',bookIDs);
-    return axios.post('/api/books/check',bookIDs)
+    return axios.post('/api/books/check',bookIDs);
+}
+
+export const deleteBook = bookID => {
+    return axios.delete(`api/books/${bookID}`);
 }

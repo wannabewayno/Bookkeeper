@@ -27,18 +27,23 @@ export default function Search() {
         .then(([crossCheckData,books]) => {
             // extract all IDs that matched
             const matchedIDs = crossCheckData.data.map(book => book.bookID);
-            // create a matcher to separate books data from ones already in our collection
-            const idMatcher = new RegExp(matchedIDs.join('|'),'g');
-            // separate all this data
-            return books.map(book => {
-                if((book.bookID.match(idMatcher)||[]).length > 0) {
-                    book.saved=true
-                    return book
-                } else {
-                    book.saved=false
-                    return book
-                }
-            })
+            if(matchedIDs.length > 0){
+                // create a matcher to separate books data from ones already in our collection
+                const idMatcher = new RegExp(matchedIDs.join('|'),'g')
+                // separate all this data
+                return books.map(book => {
+                    if((book.bookID.match(idMatcher)||[]).length > 0) {
+                        book.saved=true
+                        return book
+                    } else {
+                        book.saved=false
+                        return book
+                    }
+                })
+            } else {
+                // no matches just return the books
+                return books
+            }
         })
         .then(books => {
             // cancel spinner
