@@ -16,7 +16,11 @@ export default function Saved(){
             console.log(liftedStates);
             getBooks().then(results => {
                 console.log(results);
-                liftedStates.setResultContainerData(results)
+                const books = results.data.map(book => {
+                    book.saved = true
+                    return book
+                })
+                liftedStates.setResultContainerData(books)
             })
         }
     },[liftedStates])

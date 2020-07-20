@@ -5,10 +5,11 @@ import BookBody from './BookBody';
 import { bookStyle } from './style';
 import { saveBook } from '../../utils/API/index.js';
 
-export default function Book ({ data, saved=false }) {
+export default function Book ({ data }) {
     
-    const { bookID, authors, averageRating, categories, description, title, imageLinks, subtitle, infoLink } = data;
+    const { bookID, authors, averageRating, categories, description, title, imageLinks, subtitle, infoLink, saved } = data;
 
+    const [isSaved, setSaved] = useState(saved)
     const [bookData, setBookData] = useState({
         bookID,
         authors,
@@ -61,7 +62,7 @@ export default function Book ({ data, saved=false }) {
                 rating={averageRating}
                 authors={authors}
                 clickSave={clickSave}
-                saved={saved}
+                isSaved={isSaved}
             />
             <BookBody
                 description={description}

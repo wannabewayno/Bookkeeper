@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Container, FormContainer, SearchBar, InlineContainer, FrostedGlass,  useLiftState, Button  } from '@wannabewayno/reactor';
 import './style.css';
-import { saveBook } from '../../utils/API';
+import { saveBook, crossCheckBooks } from '../../utils/API';
 import { searchBooks } from '../../utils/API/googleBooks';
 import ResultContainer from '../../components/ResultContainer';
 import Book from '../../components/Book';
+import arrayExtend from '../../lib/arrayExtend';
+arrayExtend();
 // import Button from '../../components/buttons/buttons/Button'
 
 export default function Search() {
@@ -12,11 +14,36 @@ export default function Search() {
     const [liftedStates, liftUpState ] = useLiftState()
 
     function handleFormSubmit(formData){
-        // console.log('FORM DATA:',formData);
-        // console.log(liftedStates);
-        searchBooks(formData).then(books => {
+        // start a spinner
+        searchBooks(formData)
+        .then(books => {
             console.log(books);
-            liftedStates.setResultContainerData(books)});
+            // ok extract all google id's
+            const bookIDs = books.map(({ bookID }) => bookID);
+            console.log(bookIDs);
+            // cross reference these to your DB and note the matches.
+            return Promise.all([crossCheckBooks(bookIDs),books]);
+        })
+        .then(([crossCheckData,books]) => {
+            // extract all IDs that matched
+            const matchedIDs = crossCheckData.data.map(book => book.bookID);
+            // create a matcher to separate books data from ones already in our collection
+            const idMatcher = new RegExp(matchedIDs.join('|'),'g');
+            // separate all this data
+            return books.map(book => {
+                if((book.bookID.match(idMatcher)||[]).length > 0) {
+                    book.saved=true
+                    return book
+                } else {
+                    book.saved=false
+                    return book
+                }
+            })
+        })
+        .then(books => {
+            // cancel spinner
+            liftedStates.setResultContainerData(books)
+        })
     } 
 
     return (

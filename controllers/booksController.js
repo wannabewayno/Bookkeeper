@@ -32,5 +32,10 @@ module.exports = {
         .then(deletedBook => res.json(deletedBook))
         .catch(error => res.status(422).json(error));
     },
+    crossCheck(req,res) {
+        Book.find({ bookID: { $in: req.body } })
+        .then(results => res.json(results))
+        .catch(error => res.status(422).json(error));
+    }
 }
 
