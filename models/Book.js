@@ -5,16 +5,17 @@ const Schema = mongoose.Schema;
 // ==============================================================================
 
 const bookSchema = new Schema({
-
+    bookID: { type: String, unique:true },
     title: String,
     subtitle: String,
     authors: [ String ],
     description: String,
-    imageLinks: { String },
+    imageLinks: { 
+        thumbnail: { type: String }
+    },
     infoLink: String,
     averageRating: Number,
     categories: Number,
-
 });
 
 const Book = mongoose.model('Book', bookSchema );

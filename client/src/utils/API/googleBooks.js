@@ -14,7 +14,12 @@ export async function searchBooks(formData){
 
     try {
         const results = await axios.get(query)
-        return results.data.items.map(item => item.volumeInfo)
+        return results.data.items.map(item => {
+            const { id } = item;
+            const bookInfo = item.volumeInfo;
+            bookInfo.bookID = id;
+            return bookInfo;
+        })
         
     } catch(error) {
         console.error('An error occured searching for books:',error);

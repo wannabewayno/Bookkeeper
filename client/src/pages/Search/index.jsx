@@ -14,7 +14,9 @@ export default function Search() {
     function handleFormSubmit(formData){
         // console.log('FORM DATA:',formData);
         // console.log(liftedStates);
-        searchBooks(formData).then(books => liftedStates.setResultContainerData(books));
+        searchBooks(formData).then(books => {
+            console.log(books);
+            liftedStates.setResultContainerData(books)});
     } 
 
     return (

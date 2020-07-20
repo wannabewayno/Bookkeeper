@@ -27,7 +27,8 @@ export default function Book ({ data }) {
 
         console.log(bookData);
         // trigger spinner
-        // saveBook(bookData)
+        saveBook(bookData)
+        .then(response => console.log(response))
         // server response: stop Spinner
     }
 

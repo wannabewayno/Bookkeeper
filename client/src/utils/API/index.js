@@ -11,10 +11,8 @@ export const getBooks = async () => {
 export const saveBook = async bookData => {
     console.log('client side API:',bookData);
     try {
-        const response = await axios.post('/api/books',bookData)
-        return response;
-        console.log('Response:',response);
+        return await axios.post('/api/books',bookData)
     } catch {
-        console.error('an error occured getting books');
+        console.error('an error occured saving the Book to MongoDB');
     }
 }
