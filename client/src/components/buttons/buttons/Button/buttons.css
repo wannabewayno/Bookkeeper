@@ -86,7 +86,7 @@ button:active, .anchor-btn:active {
 
 /* --------------- custom button properties ----------------------- */
 
-.disabled {
+/* .disabled {
     background-color: var(--disabled-colour);
 }
 
@@ -96,4 +96,4 @@ button:active, .anchor-btn:active {
 
 .disabled:active, .disabled:active {
     transform: none;
-}
+} */

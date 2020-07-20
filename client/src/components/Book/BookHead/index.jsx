@@ -1,10 +1,10 @@
 import React from 'react';
 import StarRating from '../../StarRating';
 import { headStyle, infoStyle, headingStyle, authorsStyle, buttonContainerStyle } from './style'
-import { InlineContainer } from '@wannabewayno/reactor'
-import Button from '../../Button';
+import { InlineContainer, Button } from '@wannabewayno/reactor'
+// import Button from '../../buttons/buttons/Button';
 
-export default function Head({title, rating, authors, }) {
+export default function BookHead({ title, rating, authors, clickSave }) {
 
     function returnAuthor(author ,index, length) {
         let separator = ', '
@@ -24,9 +24,9 @@ export default function Head({title, rating, authors, }) {
                     <span>Written by: </span>{authors.map((author,index,array) => returnAuthor(author,index,array.length))}
                 </h6>
             </div>
-            <div style={buttonContainerStyle}>
-                <Button>View</Button>
-                <Button>Save</Button>
+            <div style={buttonContainerStyle}> 
+                <Button size='small' color='rgb(26,116,88)'>View</Button>
+                <Button size='small' color='rgb(26,116,88)' onClick={clickSave}>Save</Button>
             </div>
         </section>
     )

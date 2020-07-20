@@ -1,12 +1,35 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { InlineContainer } from  '@wannabewayno/reactor';
 import BookHead from './BookHead';
 import BookBody from './BookBody';
 import { bookStyle } from './style';
+import { saveBook } from '../../utils/API/index.js';
 
 export default function Book ({ data }) {
-    // console.log(data);
+    
     const { authors, averageRating, categories, description, title, imageLinks, subtitle, infoLink } = data;
+
+    const [bookData, setBookData] = useState({
+        authors,
+        averageRating,
+        categories,
+        description,
+        title,
+        imageLinks,
+        subtitle,
+        infoLink,
+    })
+
+    // Saves book to MongoDB
+    function clickSave(event){
+        // get the button that was clicked.
+        const ref = event.currentTarget;
+
+        console.log(bookData);
+        // trigger spinner
+        // saveBook(bookData)
+        // server response: stop Spinner
+    }
 
     let thumbnail;
     if(imageLinks) thumbnail = imageLinks.thumbnail;
@@ -34,6 +57,7 @@ export default function Book ({ data }) {
                 title={title}
                 rating={averageRating}
                 authors={authors}
+                clickSave={clickSave}
             />
             <BookBody
                 description={description}

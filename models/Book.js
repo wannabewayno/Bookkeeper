@@ -7,10 +7,11 @@ const Schema = mongoose.Schema;
 const bookSchema = new Schema({
 
     title: String,
+    subtitle: String,
     authors: [ String ],
     description: String,
-    image: String,
-    link: String,
+    imageLinks: { String },
+    infoLink: String,
     averageRating: Number,
     categories: Number,
 

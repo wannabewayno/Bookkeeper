@@ -37,7 +37,7 @@ export default function Saved(){
                </ResultContainer>
         
             </FrostedGlass>
-        <button onClick={handleClick}>click me</button>
+            
         </Container>
     )
 }

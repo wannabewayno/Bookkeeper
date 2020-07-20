@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Container, FormContainer, SearchBar, InlineContainer, FrostedGlass,  useLiftState  } from '@wannabewayno/reactor';
+import { Container, FormContainer, SearchBar, InlineContainer, FrostedGlass,  useLiftState, Button  } from '@wannabewayno/reactor';
 import './style.css';
 import { saveBook } from '../../utils/API';
 import { searchBooks } from '../../utils/API/googleBooks';
 import ResultContainer from '../../components/ResultContainer';
 import Book from '../../components/Book';
+// import Button from '../../components/buttons/buttons/Button'
 
 export default function Search() {
 
