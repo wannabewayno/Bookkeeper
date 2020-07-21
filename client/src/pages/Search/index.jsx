@@ -66,7 +66,13 @@ export default function Search() {
                     </InlineContainer>
                 </InlineContainer>
 
-                <SubmitButton size='medium' text='Search' color='rgb(26,116,88)' style={{textAlign:'center', margin:'0 auto'}}/>
+                <SubmitButton
+                    size='medium'
+                    text='Search'
+                    skin='flat'
+                    color='rgb(26,116,88)'
+                    style={{textAlign:'center', margin:'0 auto'}}
+                />
 
             </FormContainer>
 

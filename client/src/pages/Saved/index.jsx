@@ -33,10 +33,10 @@ export default function Saved(){
                 blur='x-small'
             >
                <ResultContainer results={[]} liftUpState={liftUpState}>
-                   <Book/>
-                   <p style={{
-                       padding:'2rem'
-                   }}>Save some books to see them here!</p>
+                    <Book/>
+                    <p style={{ padding:'2rem'}}>
+                        Save some books to see them here!
+                    </p>
                </ResultContainer>
         
             </FrostedGlass>

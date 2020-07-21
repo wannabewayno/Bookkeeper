@@ -23,14 +23,10 @@ export default function Book ({ data }) {
     })
 
     function handleClick(){
-        console.log(isSaved,typeof(isSaved));
-        console.log(bookData);
         if(isSaved){
             clickDelete();
-            return
         } else {
             clickSave();
-            return
         }
     }
 
@@ -87,6 +83,7 @@ export default function Book ({ data }) {
                 authors={authors}
                 handleClick={handleClick}
                 isSaved={isSaved}
+                infoLink={infoLink}
             />
             <BookBody
                 description={description}
