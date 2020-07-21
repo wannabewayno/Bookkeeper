@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, FormContainer, SearchBar, InlineContainer, FrostedGlass,  useLiftState, SubmitButton  } from '@wannabewayno/reactor';
+import { Container, FormContainer, SearchBar, InlineContainer, FrostedGlass,  useLiftState, SubmitButton, Button, ShowOnClick } from '@wannabewayno/reactor';
 import './style.css';
 import { saveBook, crossCheckBooks } from '../../utils/API';
 import { searchBooks } from '../../utils/API/googleBooks';
@@ -65,6 +65,30 @@ export default function Search() {
                         <SearchBar name={{display:'',id:'subject',toDisplay:true}} backgroundColor='rgb(26,116,88)'/>
                     </InlineContainer>
                 </InlineContainer>
+
+                <ShowOnClick transitionTime='1s'>
+                    <div style={{position:'relative'}}>
+                        <p>show me!</p>
+                        <p>show me!</p>
+                        <p>show me!</p>
+                        <p>show me!</p>
+                        <p>show me!</p>
+                        <p>show me!</p>
+                        <p>show me!</p>
+                        <p>show me!</p>
+                        <p>show me!</p>
+                        <p>show me!</p>
+                        <p>show me!</p>
+                        <p>show me!</p>
+                        <p>show me!</p>
+                        <p>show me!</p>
+                        <p>show me!</p>
+                        <p>show me!</p>
+                        <p>show me!</p>
+                        <p>show me!</p>
+                    </div>
+                    <Button size='small' skin='flat' text='show more' color='rgb(255,125,125)'/>
+                </ShowOnClick>
 
                 <SubmitButton
                     size='medium'
