@@ -5,9 +5,6 @@ import { saveBook, crossCheckBooks } from '../../utils/API';
 import { searchBooks } from '../../utils/API/googleBooks';
 import ResultContainer from '../../components/ResultContainer';
 import Book from '../../components/Book';
-import arrayExtend from '../../lib/arrayExtend';
-arrayExtend();
-// import Button from '../../components/buttons/buttons/Button'
 
 export default function Search() {
 
@@ -32,6 +29,7 @@ export default function Search() {
                 const idMatcher = new RegExp(matchedIDs.join('|'),'g')
                 // separate all this data
                 return books.map(book => {
+
                     if((book.bookID.match(idMatcher)||[]).length > 0) {
                         book.saved=true
                         return book
@@ -67,7 +65,7 @@ export default function Search() {
                         <SearchBar name={{display:'',id:'subject',toDisplay:true}} backgroundColor='rgb(26,116,88)'/>
                     </InlineContainer>
                 </InlineContainer>
-                
+
                 <SubmitButton size='medium' text='Search' color='rgb(26,116,88)' style={{textAlign:'center', margin:'0 auto'}}/>
 
             </FormContainer>
