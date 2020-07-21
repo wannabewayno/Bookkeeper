@@ -25,14 +25,17 @@ export default function BookHead({ title, rating, authors, handleClick, isSaved 
                 </h6>
             </div>
             <div style={buttonContainerStyle}> 
-                <Button size='small' color='rgb(26,116,88)'>View</Button>
+                <Button
+                    size='small'
+                    color='rgb(26,116,88)'
+                    text='View'
+                />
                 <Button
                     size='small'
                     color={isSaved?'hsl(0,70%,40%)':'rgb(26,116,88)'}
                     onClick={handleClick}
-                >
-                    {isSaved?'un-Save':'Save'}
-                </Button>
+                    text={isSaved?'un-Save':'Save'}
+                />
             </div>
         </section>
     )

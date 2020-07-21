@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, FormContainer, SearchBar, InlineContainer, FrostedGlass,  useLiftState, Button  } from '@wannabewayno/reactor';
+import { Container, FormContainer, SearchBar, InlineContainer, FrostedGlass,  useLiftState, SubmitButton  } from '@wannabewayno/reactor';
 import './style.css';
 import { saveBook, crossCheckBooks } from '../../utils/API';
 import { searchBooks } from '../../utils/API/googleBooks';
@@ -56,6 +56,7 @@ export default function Search() {
             <div style={{backgroundColor:'rgb(26,116,88)', width:'fit-content', margin:'auto',padding:'0.5rem',borderRadius:'5px'}}>Feeling bookish?</div>
 
             <FormContainer onSubmit={handleFormSubmit}>
+
                 <InlineContainer gap='1rem' minWidth='200px'>
                     <InlineContainer gap='1rem' minWidth='200px'>
                         <SearchBar name={{display:'',id:'search',toDisplay:true}} backgroundColor='rgb(26,116,88)'/>
@@ -66,7 +67,9 @@ export default function Search() {
                         <SearchBar name={{display:'',id:'subject',toDisplay:true}} backgroundColor='rgb(26,116,88)'/>
                     </InlineContainer>
                 </InlineContainer>
-                <button type='submit'>Submit</button>
+                
+                <SubmitButton size='medium' text='Search' color='rgb(26,116,88)' style={{textAlign:'center', margin:'0 auto'}}/>
+
             </FormContainer>
 
             <FrostedGlass>

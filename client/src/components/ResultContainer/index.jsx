@@ -10,18 +10,27 @@ import './style.css';
  */
 const ResultContainer = ({ children, liftUpState, style }) => {
     
-
     const errorInfo = 'The ResultContainer should wrap a template component used to render the data it receives'
+
+    if (!Array.isArray(children)) children = [children]
+
     if (!children ) {
         console.error('No template component detected!:', errorInfo)
     }
+
     if (Array.isArray(children)){
-        console.error('Too many child elements in the ResultContainer:', errorInfo)
+        if(children.length > 2){
+            console.error('Too many child elements in the ResultContainer:', errorInfo)
+        }
     }
+
+    // user passes down a template to place data, and placeholder for no data
+    const [UItemplate, noResultPlaceholder] = children
 
     const [resultContainerData, setResultContainerData] = useState([]);
 
-    //we're using the liftUpState function make the setData function available to App.js
+
+    // we're using the liftUpState function make the container state function available to it's parent's
     useEffect(() => {
         // if a liftUpState function was passed as a prop, call it
         if(liftUpState){
@@ -32,12 +41,26 @@ const ResultContainer = ({ children, liftUpState, style }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []);
    
+    function displayResults(){
+        // if there's data, display it
+        if(resultContainerData.length !== 0){
+            return (
+                <ul>
+                    {resultContainerData.map((dataItem,index) => cloneElement(UItemplate,{ data: dataItem, key: index }))}
+                </ul>
+            )
+        // no data, display the placholder if it was defined
+        } else if(noResultPlaceholder){
+            return noResultPlaceholder
+        } else {
+        // else just display nothing
+            return null
+        }
+    }
 
     return (
         <section className='ResultContainer' style={style}>
-            <ul>
-                {resultContainerData.map((dataItem,index) => cloneElement(children,{ data: dataItem, key: index }))}
-            </ul>
+            {displayResults()}
         </section>
     )
 }
