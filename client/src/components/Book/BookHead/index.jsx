@@ -1,7 +1,7 @@
 import React from 'react';
 import StarRating from '../../StarRating';
 import { headStyle, infoStyle, headingStyle, authorsStyle, buttonContainerStyle } from './style'
-import { InlineContainer, Button, Link } from '@wannabewayno/reactor'
+import { Button, Link } from '@wannabewayno/reactor'
 // import Button from '../../buttons/buttons/Button';
 
 export default function BookHead({ title, rating, authors, handleClick, isSaved, infoLink }) {

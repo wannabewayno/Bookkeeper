@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import BookHead from './BookHead';
 import BookBody from './BookBody';
 import { bookStyle } from './style';

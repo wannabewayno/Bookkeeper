@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, FormContainer, SearchBar, InlineContainer, FrostedGlass,  useLiftState, SubmitButton, Button, ShowOnClick } from '@wannabewayno/reactor';
 import './style.css';
-import { saveBook, crossCheckBooks } from '../../utils/API';
+import { crossCheckBooks } from '../../utils/API';
 import { searchBooks } from '../../utils/API/googleBooks';
 import ResultContainer from '../../components/ResultContainer';
 import Book from '../../components/Book';
@@ -14,7 +14,8 @@ export default function Search() {
         // start a spinner
         searchBooks(formData)
         .then(books => {
-            if(!books) books = []
+            
+            if(!books) books = [{title:'no results found'}]
             // ok extract all google id's
             const bookIDs = books.map(({ bookID }) => bookID);
            
@@ -44,7 +45,6 @@ export default function Search() {
             }
         })
         .then(books => {
-            console.log(books);
             // cancel spinner
             liftedStates.setResultContainerData(books)
         })
@@ -58,20 +58,19 @@ export default function Search() {
 
                 <SearchBar name={{display:'',id:'query',toDisplay:true}} backgroundColor='rgb(26,116,88)'/>
                         
-
-                <InlineContainer gap='1rem' minWidth='200px'>
+                <ShowOnClick transitionTime='500ms' showOnMount={true} name={{id:'ShowOnClick'}}>
+                    <div name={{id:'div'}} style={{position:'relative',height:'fit-content'}}>
+                        <InlineContainer gap='1rem' minWidth='200px' name={{id:'InlineContainer'}}>
+                            <SearchBar name={{id:'title'}} backgroundColor='rgb(26,116,88)'/>
                             <SearchBar name={{id:'author'}} backgroundColor='rgb(26,116,88)'/>
                             <SearchBar name={{id:'subject'}} backgroundColor='rgb(26,116,88)'/>
-                            <SearchBar name={{id:'title'}} backgroundColor='rgb(26,116,88)'/>
                         </InlineContainer>
-                <ShowOnClick transitionTime='500ms' showOnMount={true}>
-                    <div>
-                       
                     </div>
-                    <Button size='x-small' skin='flat' text='Advanced' color='rgb(255,125,125)'/>
+                    <Button size='x-small' skin='flat' text='Advanced' color='rgb(255,125,125)' name={{id:'dropdown button'}}/>
                 </ShowOnClick>
 
                 <SubmitButton
+                    name={{id:'SubmitButton'}}
                     size='medium'
                     text='Search'
                     skin='flat'
@@ -80,6 +79,8 @@ export default function Search() {
                 />
 
             </FormContainer>
+
+                        
 
             <FrostedGlass>
             	<ResultContainer liftUpState={liftUpState}>

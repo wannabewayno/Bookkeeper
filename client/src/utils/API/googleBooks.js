@@ -13,11 +13,9 @@ export function searchBooks(formData) {
 
     // const url = 'https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes'
     const url = baseQuery+inQuery+inAuthor+inTitle+inSubject;
-    console.log(url);
 
     return axios.get(url)
     .then(books => {
-        console.log(books);
         return books.data.items.map(item => {
             const { id } = item;
             const bookInfo = item.volumeInfo;
@@ -25,5 +23,8 @@ export function searchBooks(formData) {
             return bookInfo;
         })
     })
-    .catch(error => error.response)
+    .catch(error => {
+        console.error('Error:',error.response.data.error.message);
+        return []
+    })
 }

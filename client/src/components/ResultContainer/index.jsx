@@ -26,7 +26,7 @@ const ResultContainer = ({ children, liftUpState, style={} }) => {
 
     // user passes down a template to place data, and placeholder for no data
     const [UItemplate, noResultPlaceholder] = children
-    console.log(UItemplate);
+    
     const [resultContainerData, setResultContainerData] = useState([]);
 
 

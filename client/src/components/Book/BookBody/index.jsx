@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import placeholder from './placeholder.png';
-import { thumbnailStyle, bodyStyle, categoryStyle, descriptionStyle, alignmentStyle } from './style';
-import { useComputedStyle, InlineContainer } from '@wannabewayno/reactor';
+import { thumbnailStyle, bodyStyle, descriptionStyle, alignmentStyle } from './style';
 
 export default function BookBody({ thumbnail, description, categories}){
 
@@ -22,6 +21,7 @@ export default function BookBody({ thumbnail, description, categories}){
                     src={thumbnail?thumbnail:placeholder}
                     style={thumbnailStyle}
                     ref={thumbnailRef}
+                    alt="book cover"
                 />
                 <p ref={descriptionRef} style={descriptionStyle}>{description}</p>
             </div>
