@@ -1,16 +1,15 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { InlineContainer } from  '@wannabewayno/reactor';
 import BookHead from './BookHead';
 import BookBody from './BookBody';
 import { bookStyle } from './style';
 import { saveBook, deleteBook } from '../../utils/API/index.js';
 
 export default function Book ({ data }) {
-    
-    const { bookID, authors, averageRating, categories, description, title, imageLinks, subtitle, infoLink, saved } = data;
 
-    const [isSaved, setIsSaved] = useState(saved)
-    const [bookData, setBookData] = useState({
+    const { bookID, authors, averageRating, categories, description, title, imageLinks, subtitle, infoLink, saved } = data
+
+    const [ isSaved, setIsSaved ] = useState(saved)
+    const  [ bookData ] = useState({
         bookID,
         authors,
         averageRating,
@@ -25,14 +24,16 @@ export default function Book ({ data }) {
     function handleClick(){
         if(isSaved){
             clickDelete();
+            return
         } else {
             clickSave();
+            return
         }
     }
 
 
     // Saves book to MongoDB
-    function clickSave(event){
+    function clickSave(){
         // server processing: trigger spinner
         saveBook(bookData)
         .then(() => {
@@ -44,7 +45,7 @@ export default function Book ({ data }) {
     }
 
     // Removes book from MongoDB
-    function clickDelete(event){
+    function clickDelete(){
         // server processing: trigger spinner
         deleteBook(bookData.bookID)
         .then(() => {
@@ -83,7 +84,6 @@ export default function Book ({ data }) {
                 authors={authors}
                 handleClick={handleClick}
                 isSaved={isSaved}
-                infoLink={infoLink}
             />
             <BookBody
                 description={description}

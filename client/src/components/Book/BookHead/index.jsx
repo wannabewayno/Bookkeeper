@@ -21,7 +21,7 @@ export default function BookHead({ title, rating, authors, handleClick, isSaved,
                     <StarRating rating={rating}/>
                 </div>
                 <h6 style={authorsStyle}>
-                    <span>Written by: </span>{authors.map((author,index,array) => returnAuthor(author,index,array.length))}
+                    <span>Written by: </span>{authors?authors.map((author,index,array) => returnAuthor(author,index,array.length)):null}
                 </h6>
             </div>
             <div style={buttonContainerStyle}> 

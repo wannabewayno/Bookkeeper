@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Container, FormContainer, SearchBar, InlineContainer, FrostedGlass,  useLiftState, SubmitButton, Button, ShowOnClick } from '@wannabewayno/reactor';
 import './style.css';
 import { saveBook, crossCheckBooks } from '../../utils/API';
@@ -17,14 +17,14 @@ export default function Search() {
             console.log(books);
             // ok extract all google id's
             const bookIDs = books.map(({ bookID }) => bookID);
-            console.log(bookIDs);
+           
             // cross reference these to your DB and note the matches.
             return Promise.all([crossCheckBooks(bookIDs),books]);
         })
         .then(([crossCheckData,books]) => {
             // extract all IDs that matched
             const matchedIDs = crossCheckData.data.map(book => book.bookID);
-            if(matchedIDs.length > 0){
+            if(matchedIDs.length > 0) {
                 // create a matcher to separate books data from ones already in our collection
                 const idMatcher = new RegExp(matchedIDs.join('|'),'g')
                 // separate all this data
@@ -44,6 +44,7 @@ export default function Search() {
             }
         })
         .then(books => {
+            console.log(books);
             // cancel spinner
             liftedStates.setResultContainerData(books)
         })
@@ -55,39 +56,19 @@ export default function Search() {
 
             <FormContainer onSubmit={handleFormSubmit}>
 
-                <InlineContainer gap='1rem' minWidth='200px'>
-                    <InlineContainer gap='1rem' minWidth='200px'>
-                        <SearchBar name={{display:'',id:'search',toDisplay:true}} backgroundColor='rgb(26,116,88)'/>
-                        <SearchBar name={{display:'',id:'title',toDisplay:true}} backgroundColor='rgb(26,116,88)'/>
-                    </InlineContainer>
-                    <InlineContainer gap='1rem' minWidth='200px'>
-                        <SearchBar name={{display:'',id:'author',toDisplay:true}} backgroundColor='rgb(26,116,88)'/>
-                        <SearchBar name={{display:'',id:'subject',toDisplay:true}} backgroundColor='rgb(26,116,88)'/>
-                    </InlineContainer>
-                </InlineContainer>
+                <SearchBar name={{display:'',id:'query',toDisplay:true}} backgroundColor='rgb(26,116,88)'/>
+                        
 
-                <ShowOnClick transitionTime='1s'>
-                    <div style={{position:'relative'}}>
-                        <p>show me!</p>
-                        <p>show me!</p>
-                        <p>show me!</p>
-                        <p>show me!</p>
-                        <p>show me!</p>
-                        <p>show me!</p>
-                        <p>show me!</p>
-                        <p>show me!</p>
-                        <p>show me!</p>
-                        <p>show me!</p>
-                        <p>show me!</p>
-                        <p>show me!</p>
-                        <p>show me!</p>
-                        <p>show me!</p>
-                        <p>show me!</p>
-                        <p>show me!</p>
-                        <p>show me!</p>
-                        <p>show me!</p>
+                <InlineContainer gap='1rem' minWidth='200px'>
+                            <SearchBar name={{id:'author'}} backgroundColor='rgb(26,116,88)'/>
+                            <SearchBar name={{id:'subject'}} backgroundColor='rgb(26,116,88)'/>
+                            <SearchBar name={{id:'title'}} backgroundColor='rgb(26,116,88)'/>
+                        </InlineContainer>
+                <ShowOnClick transitionTime='500ms' showOnMount={true}>
+                    <div>
+                       
                     </div>
-                    <Button size='small' skin='flat' text='show more' color='rgb(255,125,125)'/>
+                    <Button size='x-small' skin='flat' text='Advanced' color='rgb(255,125,125)'/>
                 </ShowOnClick>
 
                 <SubmitButton
@@ -101,7 +82,7 @@ export default function Search() {
             </FormContainer>
 
             <FrostedGlass>
-            	<ResultContainer results={[]} liftUpState={liftUpState}>
+            	<ResultContainer liftUpState={liftUpState}>
             	    <Book/>
             	</ResultContainer>
             </FrostedGlass>

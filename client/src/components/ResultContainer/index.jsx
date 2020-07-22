@@ -8,7 +8,7 @@ import './style.css';
  * @param {Object} props.children      - The template component to render the data with matching data keys
  * @param {Object} [props.liftUpState] - a function that lift's up the containers data state and setData attributes.
  */
-const ResultContainer = ({ children, liftUpState, style }) => {
+const ResultContainer = ({ children, liftUpState, style={} }) => {
     
     const errorInfo = 'The ResultContainer should wrap a template component used to render the data it receives'
 
@@ -26,7 +26,7 @@ const ResultContainer = ({ children, liftUpState, style }) => {
 
     // user passes down a template to place data, and placeholder for no data
     const [UItemplate, noResultPlaceholder] = children
-
+    console.log(UItemplate);
     const [resultContainerData, setResultContainerData] = useState([]);
 
 
@@ -41,6 +41,8 @@ const ResultContainer = ({ children, liftUpState, style }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []);
    
+    useEffect(() =>console.log(resultContainerData),[resultContainerData])
+
     function displayResults(){
         // if there's data, display it
         if(resultContainerData.length !== 0){

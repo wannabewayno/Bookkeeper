@@ -30,6 +30,7 @@
 }
 
 .navbox a {
+    color:rgb(166,95,42,1);
     width:50%;
     display: flex;
     justify-content: center;
@@ -37,13 +38,9 @@
     height:75%;
     text-decoration: none;
     padding:0 0.5rem;
-    background-color: bisque;
+    background-color:bisque;
     border-radius: 0;
     transition: all ease-in-out;
-}
-
-.navbox a:hover{
-   
 }
 
 .navbox a:active {

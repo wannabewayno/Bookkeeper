@@ -1,27 +1,29 @@
 import axios from 'axios'
 
 
-export async function searchBooks(formData){
+export function searchBooks(formData) {
     console.log('SearchBooks:',formData);
-    const API_KEY = `&key=AIzaSyCRF6tILXxOwY99z6s-LAUJFM1oaV2YyCI`;
+    const { query , title, author, subject } = formData
+    console.log(query,title,author,subject);
     const baseQuery = 'https://www.googleapis.com/books/v1/volumes?q='
-    const general = '';
-    const inAuthor = `inauthor:${''}`;
-    const inTitle = `intitle:${''}`;
-    const subject = `subject${''}`;
+    const inQuery = query?query:'';
+    const inAuthor = author?`inauthor:${author}`:'';
+    const inTitle = title?`intitle:${title}`:'';
+    const inSubject = subject?`subject:${subject}`:'';
 
-    const query = 'https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes'
+    // const url = 'https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes'
+    const url = baseQuery+inQuery+inAuthor+inTitle+inSubject;
+    console.log(url);
 
-    try {
-        const results = await axios.get(query)
-        return results.data.items.map(item => {
+    return axios.get(url)
+    .then(books => {
+        console.log(books);
+        return books.data.items.map(item => {
             const { id } = item;
             const bookInfo = item.volumeInfo;
             bookInfo.bookID = id;
             return bookInfo;
         })
-        
-    } catch(error) {
-        console.error('An error occured searching for books:',error);
-    }
+    })
+    .catch(error => error.response)
 }

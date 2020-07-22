@@ -32,7 +32,7 @@ export default function Saved(){
                 shadow='xx-large'
                 blur='x-small'
             >
-               <ResultContainer results={[]} liftUpState={liftUpState}>
+               <ResultContainer liftUpState={liftUpState}>
                     <Book/>
                     <p style={{ padding:'2rem'}}>
                         Save some books to see them here!
