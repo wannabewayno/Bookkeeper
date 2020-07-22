@@ -29,7 +29,7 @@ export default function BookHead({ title, rating, authors, handleClick, isSaved,
                     size='small'
                     color='rgb(26,116,88)'
                     text='View'
-                    href={infoLink}
+                    href={infoLink?infoLink:'#'}
                 />
                 <Button
                     size='small'

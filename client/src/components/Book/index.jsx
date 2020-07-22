@@ -82,6 +82,7 @@ export default function Book ({ data }) {
                 title={title}
                 rating={averageRating}
                 authors={authors}
+                infoLink={infoLink}
                 handleClick={handleClick}
                 isSaved={isSaved}
             />
