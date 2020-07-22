@@ -2,9 +2,9 @@ import axios from 'axios'
 
 
 export function searchBooks(formData) {
-    console.log('SearchBooks:',formData);
+    
     const { query , title, author, subject } = formData
-    console.log(query,title,author,subject);
+
     const baseQuery = 'https://www.googleapis.com/books/v1/volumes?q='
     const inQuery = query?query:'';
     const inAuthor = author?`inauthor:${author}`:'';

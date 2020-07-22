@@ -40,8 +40,6 @@ const ResultContainer = ({ children, liftUpState, style={} }) => {
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []);
-   
-    useEffect(() =>console.log(resultContainerData),[resultContainerData])
 
     function displayResults(){
         // if there's data, display it

@@ -58,31 +58,35 @@ export default function Search() {
 
                 <SearchBar name={{display:'',id:'query',toDisplay:true}} backgroundColor='rgb(26,116,88)'/>
                         
-                <ShowOnClick transitionTime='500ms' showOnMount={true} name={{id:'ShowOnClick'}}>
-                    <div name={{id:'div'}} style={{position:'relative',height:'fit-content'}}>
-                        <InlineContainer gap='1rem' minWidth='200px' name={{id:'InlineContainer'}}>
+                <ShowOnClick transitionTime='500ms'>
+                    <div>
+                        <InlineContainer gap='1rem' minWidth='225px' name={{id:'InlineContainer'}}>
                             <SearchBar name={{id:'title'}} backgroundColor='rgb(26,116,88)'/>
                             <SearchBar name={{id:'author'}} backgroundColor='rgb(26,116,88)'/>
                             <SearchBar name={{id:'subject'}} backgroundColor='rgb(26,116,88)'/>
                         </InlineContainer>
                     </div>
-                    <Button size='x-small' skin='flat' text='Advanced' color='rgb(255,125,125)' name={{id:'dropdown button'}}/>
+                    <Button
+                        size='x-small'
+                        skin='flat'
+                        text='Advanced'
+                        color='rgb(255,125,125)'
+                    />
                 </ShowOnClick>
 
                 <SubmitButton
-                    name={{id:'SubmitButton'}}
                     size='medium'
                     text='Search'
                     skin='flat'
                     color='rgb(26,116,88)'
-                    style={{textAlign:'center', margin:'0 auto'}}
+                    style={{textAlign:'center', margin:'-2.5rem auto'}}
                 />
 
             </FormContainer>
 
                         
 
-            <FrostedGlass>
+            <FrostedGlass style={{marginTop:'2.5rem'}}>
             	<ResultContainer liftUpState={liftUpState}>
             	    <Book/>
             	</ResultContainer>
