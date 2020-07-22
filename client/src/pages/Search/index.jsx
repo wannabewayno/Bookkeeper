@@ -1,9 +1,8 @@
 import React from 'react';
-import { Container, FormContainer, SearchBar, InlineContainer, FrostedGlass,  useLiftState, SubmitButton, Button, ShowOnClick } from '@wannabewayno/reactor';
+import { Container, FormContainer, ResultContainer, SearchBar, InlineContainer, FrostedGlass,  useLiftState, SubmitButton, Button, ShowOnClick } from '@wannabewayno/reactor';
 import './style.css';
 import { crossCheckBooks } from '../../utils/API';
 import { searchBooks } from '../../utils/API/googleBooks';
-import ResultContainer from '../../components/ResultContainer';
 import Book from '../../components/Book';
 
 export default function Search() {
@@ -50,20 +49,26 @@ export default function Search() {
         })
     } 
 
+    const queryLabel    = {id:'query'};
+    const titleLabel    = {display:'Title',id:'title',toDisplay:true};
+    const authorLabel   = {display:'Author',id:'author',toDisplay:true};
+    const categoryLabel = {display:'Category',id:'subject',toDisplay:true};
+    const placeholder = 'refine by...'
+
     return (
         <Container>
             <div style={{backgroundColor:'rgb(26,116,88)', width:'fit-content', margin:'auto',padding:'0.5rem',borderRadius:'5px'}}>Feeling bookish?</div>
 
             <FormContainer onSubmit={handleFormSubmit}>
 
-                <SearchBar name={{display:'',id:'query',toDisplay:true}} backgroundColor='rgb(26,116,88)'/>
+                <SearchBar name={queryLabel} backgroundColor='rgb(26,116,88)' icon container={{marginBottom:'1rem'}}/>
                         
-                <ShowOnClick transitionTime='500ms'>
+                <ShowOnClick transitionTime='500ms' showOnMount>
                     <div>
-                        <InlineContainer gap='1rem' minWidth='225px' name={{id:'InlineContainer'}}>
-                            <SearchBar name={{id:'title'}} backgroundColor='rgb(26,116,88)'/>
-                            <SearchBar name={{id:'author'}} backgroundColor='rgb(26,116,88)'/>
-                            <SearchBar name={{id:'subject'}} backgroundColor='rgb(26,116,88)'/>
+                        <InlineContainer gap='1rem' minWidth='225px'>
+                            <SearchBar name={titleLabel} backgroundColor='rgb(26,116,88)'  placeholder={placeholder} label={{padding:'0 1.2rem'}}/>
+                            <SearchBar name={authorLabel} backgroundColor='rgb(26,116,88)' placeholder={placeholder} label={{padding:'0 0.75rem'}}/>
+                            <SearchBar name={categoryLabel} backgroundColor='rgb(26,116,88)' placeholder={placeholder}/>
                         </InlineContainer>
                     </div>
                     <Button
@@ -79,7 +84,7 @@ export default function Search() {
                     text='Search'
                     skin='flat'
                     color='rgb(26,116,88)'
-                    style={{textAlign:'center', margin:'-2.5rem auto'}}
+                    style={{textAlign:'center', margin:'-2rem auto'}}
                 />
 
             </FormContainer>

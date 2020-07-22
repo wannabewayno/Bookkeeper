@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
-import { Container, FrostedGlass, useLiftState } from '@wannabewayno/reactor';
+import { Container, FrostedGlass, useLiftState, ResultContainer } from '@wannabewayno/reactor';
 import './style.css';
 import { getBooks } from '../../utils/API';
-import ResultContainer from '../../components/ResultContainer';
 import Book from '../../components/Book';
 
 export default function Saved(){
