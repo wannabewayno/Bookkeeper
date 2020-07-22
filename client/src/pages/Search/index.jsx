@@ -63,9 +63,9 @@ export default function Search() {
 
                 <SearchBar name={queryLabel} backgroundColor='rgb(26,116,88)' icon container={{marginBottom:'1rem'}}/>
                         
-                <ShowOnClick transitionTime='500ms' showOnMount>
+                <ShowOnClick transitionTime='500ms'>
                     <div>
-                        <InlineContainer gap='1rem' minWidth='225px'>
+                        <InlineContainer gap='1rem' minWidth='200px'>
                             <SearchBar name={titleLabel} backgroundColor='rgb(26,116,88)'  placeholder={placeholder} label={{padding:'0 1.2rem'}}/>
                             <SearchBar name={authorLabel} backgroundColor='rgb(26,116,88)' placeholder={placeholder} label={{padding:'0 0.75rem'}}/>
                             <SearchBar name={categoryLabel} backgroundColor='rgb(26,116,88)' placeholder={placeholder}/>
