@@ -14,7 +14,7 @@ export default function Search() {
         // start a spinner
         searchBooks(formData)
         .then(books => {
-            console.log(books);
+            if(!books) books = []
             // ok extract all google id's
             const bookIDs = books.map(({ bookID }) => bookID);
            
